@@ -32,6 +32,32 @@ laptop-store/
 3. Новые ресурсы автоматически добавляются в кэш
 4. При активации (`activate`) — удаляем устаревшие кэши
 
+## Код сохраниения в LocalStorage
+
+```bash
+// --- Состояние ---
+let cart = JSON.parse(localStorage.getItem('voltex-cart') || '[]');
+let activeFilter = 'all';
+let searchQuery = '';
+let currentSection = 'catalog';
+
+// --- Утилиты ---
+function formatPrice(p) {
+  return p.toLocaleString('ru-RU') + ' ₽';
+}
+
+function saveCart() {
+  localStorage.setItem('voltex-cart', JSON.stringify(cart));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+```
+
 ## Запуск
 
 ```bash
@@ -42,3 +68,7 @@ http-server . -p 3000
 ```
 
 > ⚠️ Service Worker работает только при запуске через HTTP-сервер (не через `file://`)
+
+<img width="1897" height="931" alt="image" src="https://github.com/user-attachments/assets/0fec8e22-2831-4646-854e-37d48d87b166" />
+<img width="1805" height="918" alt="image" src="https://github.com/user-attachments/assets/ff77c150-e10d-4e27-bddc-3c56eea7426c" />
+<img width="1852" height="929" alt="image" src="https://github.com/user-attachments/assets/aa095f70-aa22-4f75-9a64-3a31892e4b1e" />
